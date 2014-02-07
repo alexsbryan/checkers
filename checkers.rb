@@ -43,7 +43,7 @@ class Piece
     return false if !@board.board[e_y][e_x].nil?
     #checks the move direction times the assigned color direction
     # raise "wrong direction"
-    return false if m_y * COLOR_DIRS[@color] <= 0 && !@king
+    return false if m_x * COLOR_DIRS[@color] <= 0 && !@king
 
     #make move
 
@@ -69,7 +69,7 @@ class Piece
     #destination occupied
     return false if !@board.board[e_y][e_x].nil?
     #checks the move direction times the assigned color direction
-    return false if m_y * COLOR_DIRS[@color] <= 0 && !@king
+    return false if m_x * COLOR_DIRS[@color] <= 0 && !@king
     #wrong direction or jump wrong color
     return false if @board.board[s_y + unit_y][s_x + unit_x].nil? || @board.board[s_y + unit_y][s_x + unit_x].color == self.color
     # "jump not right size"
@@ -333,11 +333,12 @@ end
 
 
 
-a = Board.new
+a = Game.new
+a.play
 # # p a.board[0][2].perform_moves([[[0,2],[1,3]],[[2,2],[3,3]]])
 # p a.board[1][5].perform_moves([[[1,5],[2,4]]])
-p a.board[7][5].perform_slide([7,5],[,4])
-a.print_board
+# p a.board[7][5].perform_slide([1,5],[2,4])
+# a.print_board
 #
 # # red1 = Piece.new(:r, [1,1], a)
 # # red2 = Piece.new(:r, [3,1], a)
